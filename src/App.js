@@ -1,4 +1,5 @@
 import React from 'react';
+import injectSheet from 'react-jss';
 import MovieComponent from './components/MovieComponent';
 import PlayerComponent from './components/PlayerComponent';
 import { getMovieTrailers } from './helper';
@@ -60,11 +61,11 @@ class App extends React.Component {
 	};
 
 	render() {
-		const { parentMoviesContainer, mainContainerStyle } = styles;
+		const { parentMoviesContainer, mainContainerStyle } = this.props.classes;
 		const { playerIndex, trailersList, selectedMovies } = this.state;
 		return (
-			<div style={mainContainerStyle}>
-				<div style={parentMoviesContainer}>
+			<div className={mainContainerStyle}>
+				<div className={parentMoviesContainer}>
 					{trailersList.map((item, index) => {
 						return (
 							<React.Fragment key={item + index}>
@@ -95,4 +96,4 @@ class App extends React.Component {
 	}
 }
 
-export default App;
+export default injectSheet(styles)(App)
