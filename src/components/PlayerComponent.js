@@ -12,6 +12,7 @@ const styles = {
 		backgroundPosition: 'center',
 		backgroundRepeat: 'no-repeat',
 		backgroundSize: 'cover',
+		justifyContent: 'center',
 	},
 	youtubeContainer: {
 		height: '50vh',
@@ -34,6 +35,7 @@ const styles = {
 		display: 'flex',
 		flexDirection: 'column',
 		borderRadius: 8,
+		marginTop: '1vh',
 	},
 	genreStyle: {
 		border: '1px solid white',
