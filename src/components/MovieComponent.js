@@ -1,4 +1,5 @@
 import React from 'react';
+import injectSheet from 'react-jss';
 import PlayButton from '../assests/play_btn.png';
 
 const styles = {
@@ -55,18 +56,18 @@ const styles = {
 	},
 };
 
-const MovieComponent = ({ customStyle, handleClickOperation, name, imgSrc, date }) => {
+const MovieComponent = ({ handleClickOperation, name, imgSrc, date, classes }) => {
 	return (
-		<div style={{ ...styles.movieComponent, ...customStyle }}>
+		<div className={classes.movieComponent}>
 			<img
 				src={`https://in.bmscdn.com/events/moviecard/${imgSrc}.jpg`}
 				alt="some"
 				onClick={handleClickOperation}
-				style={styles.imageStyle}
+				className={classes.imageStyle}
 			/>
-			<img style={styles.playButtonStyle} src={PlayButton} alt={name} />
-			<span style={styles.movieNameStyle}>{name}</span>
-			<span style={styles.releaseDateStyle}>
+			<img className={classes.playButtonStyle} src={PlayButton} alt={name} />
+			<span className={classes.movieNameStyle}>{name}</span>
+			<span className={classes.releaseDateStyle}>
 				{date.split(' ')[0]}
 				<br /> {date.split(' ')[1].slice(0, date.split(' ')[1].length - 1)}
 			</span>
@@ -74,8 +75,6 @@ const MovieComponent = ({ customStyle, handleClickOperation, name, imgSrc, date 
 	);
 };
 
-MovieComponent.defaultProps = {
-	customStyle: {},
-};
+MovieComponent.defaultProps = {};
 
-export default MovieComponent;
+export default injectSheet(styles)(MovieComponent);

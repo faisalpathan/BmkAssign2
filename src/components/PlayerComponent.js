@@ -1,4 +1,5 @@
 import React from 'react';
+import injectSheet from 'react-jss';
 import LikeButton from '../assests/like_white.png';
 import Calender from '../assests/calendar.png';
 
@@ -35,7 +36,7 @@ const styles = {
 		display: 'flex',
 		flexDirection: 'column',
 		borderRadius: 8,
-		marginTop: '1vh',
+		marginTop: '0.3vh',
 	},
 	genreStyle: {
 		border: '1px solid white',
@@ -63,27 +64,28 @@ const styles = {
 
 class PlayerComponent extends React.PureComponent {
 	renderLikeAndCalenderComponent = (image, altName, title, subtitle) => {
+		const { classes } = this.props;
 		return (
-			<div style={styles.likeAndCalenderComponentStyle}>
+			<div className={classes.likeAndCalenderComponentStyle}>
 				<img src={image} alt={altName} />
 				<div>
-					<span style={styles.textStyle}>{title}</span>
+					<span className={classes.textStyle}>{title}</span>
 					<br />
-					<span style={styles.textStyle}>{subtitle}</span>
+					<span className={classes.textStyle}>{subtitle}</span>
 				</div>
 			</div>
 		);
 	};
 
 	render() {
-		const { youtubeUrl, title, genres, language, percent, likes, date } = this.props;
+		const { youtubeUrl, title, genres, language, percent, likes, date, classes } = this.props;
 		return (
-			<div style={styles.playerContainer}>
-				<iframe style={styles.youtubeContainer} title={title} src={youtubeUrl} />
-				<div style={styles.trailerDetailsContainer}>
+			<div className={classes.playerContainer}>
+				<iframe className={classes.youtubeContainer} title={title} src={youtubeUrl} />
+				<div className={classes.trailerDetailsContainer}>
 					<p style={{ ...styles.textStyle, fontSize: '1.5em' }}>{title}</p>
-					<p style={styles.textStyle}>{language}</p>
-					<div style={styles.genreContainerStyle}>
+					<p className={classes.textStyle}>{language}</p>
+					<div className={classes.genreContainerStyle}>
 						{genres.map(genre => {
 							return (
 								<span key={genre} style={{ ...styles.textStyle, ...styles.genreStyle }}>
@@ -93,7 +95,7 @@ class PlayerComponent extends React.PureComponent {
 						})}
 					</div>
 					<br />
-					<div style={styles.likeAndCalenderContainerStyle}>
+					<div className={classes.likeAndCalenderContainerStyle}>
 						{this.renderLikeAndCalenderComponent(LikeButton, 'like', percent, likes)}
 						{this.renderLikeAndCalenderComponent(
 							Calender,
@@ -108,4 +110,4 @@ class PlayerComponent extends React.PureComponent {
 	}
 }
 
-export default PlayerComponent;
+export default injectSheet(styles)(PlayerComponent);
